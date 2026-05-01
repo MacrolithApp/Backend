@@ -1,5 +1,31 @@
 <Solution>
-  <Project Path="./src/Presentation/Presentation.csproj" />
-  <Project Path="./src/Shared/Shared.csproj" />
-  <Project Path="./tests/Macrolith.UnitTests/Macrolith.UnitTests.csproj" />
+  	<Configurations>
+        	<Platform Name="Any CPU" />
+        	<Platform Name="x64" />
+        	<Platform Name="x86" />
+  	</Configurations>
+
+	<!-- Source Code -->
+	<Folder Name="/src/">
+        <Project Path="src/Presentation/Presentation.csproj" />
+    </Folder>
+
+	<!-- Shared -->
+	<Folder Name="/src/Shared/">
+		<Project Path="src/Shared/Domain/Shared.Domain.csproj" />
+		<Project Path="src/Shared/Application/Shared.Application.csproj" />
+		<Project Path="src/Shared/Persistence/Shared.Persistence.csproj" />
+		<Project Path="src/Shared/API/Shared.API.csproj" />
+    </Folder>
+
+	<!-- Modules -->
+	<Folder Name="/src/Modules/">
+
+	</Folder>
+
+  	<!-- Test Code -->
+	<Folder Name="/tests/">
+    	<!-- Unit Tests -->
+        <Project DisplayName="Architecture" Path="tests/UnitTests/UnitTests.csproj" />
+	</Folder>
 </Solution>

@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
-using static Shared.GlobalConstants;
+using static Shared.API.GlobalConstants;
+
+namespace Presentation;
 
 public static class ProgramExtensions
 {

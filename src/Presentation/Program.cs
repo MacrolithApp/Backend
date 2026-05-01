@@ -1,4 +1,5 @@
-using static Shared.GlobalConstants;
+using Presentation;
+using static Shared.API.GlobalConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

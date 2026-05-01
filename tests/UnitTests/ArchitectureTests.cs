@@ -1,4 +1,4 @@
-﻿namespace Macrolith.UnitTests;
+﻿namespace UnitTests;
 
 public class ArchitectureTests
 {

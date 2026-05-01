@@ -1,4 +1,4 @@
-﻿namespace Shared;
+﻿namespace Shared.API;
 
 public static class GlobalConstants
 {
