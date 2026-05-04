@@ -3,24 +3,24 @@ using Shared.Domain.Methods;
 
 namespace Shared.Domain.TypedIds.Foods;
 
-public readonly struct WeeklyPlanId : IEntityId<Guid>
+public readonly struct FoodId : IEntityId<Guid>
 {
-    public WeeklyPlanId() : this(Guid.Empty) { }
-    private WeeklyPlanId(Guid value)
+    public FoodId() : this(Guid.Empty) { }
+    private FoodId(Guid value)
     {
         Value = value;
     }
 
     public Guid Value { get; init; }
 
-    public static WeeklyPlanId New() => new(Guid.NewGuid());
-    public static WeeklyPlanId New(Guid id) => new(id);
-    public static WeeklyPlanId New(string id) => new(Guid.Parse(id));
-    public static Guid Unwrap(WeeklyPlanId id) => id.Value;
-    public static Guid? Unwrap(WeeklyPlanId? id) => id?.Value;
+    public static FoodId New() => new(Guid.NewGuid());
+    public static FoodId New(Guid id) => new(id);
+    public static FoodId New(string id) => new(Guid.Parse(id));
+    public static Guid Unwrap(FoodId id) => id.Value;
+    public static Guid? Unwrap(FoodId? id) => id?.Value;
 
     public override bool Equals(object? obj)
-        => obj is WeeklyPlanId foodId && this == foodId;
+        => obj is FoodId foodId && this == foodId;
 
     public override int GetHashCode()
         => this.Value.GetHashCode() * PrimeNumberGenerator.GetRandomPrime();
@@ -28,9 +28,9 @@ public readonly struct WeeklyPlanId : IEntityId<Guid>
     public override string ToString()
         => this.Value.ToString();
 
-    public static bool operator ==(WeeklyPlanId left, WeeklyPlanId right)
+    public static bool operator ==(FoodId left, FoodId right)
         => left.Value == right.Value;
 
-    public static bool operator !=(WeeklyPlanId left, WeeklyPlanId right)
+    public static bool operator !=(FoodId left, FoodId right)
         => !(left == right);
 }

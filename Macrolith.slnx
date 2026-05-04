@@ -17,15 +17,17 @@
 		<Project Path="src/Shared/Persistence/Shared.Persistence.csproj" />
 		<Project Path="src/Shared/API/Shared.API.csproj" />
     </Folder>
+	<Folder Name="/src/Modules/" />
 
 	<!-- Modules -->
-	<Folder Name="/src/Modules/">
-
+	<!--  Food   -->
+	<Folder Name="/src/Modules/Food/">
+		<Project Path="src/Modules/Food/Domain/Modules.Food.Domain.csproj" />
 	</Folder>
 
   	<!-- Test Code -->
 	<Folder Name="/tests/">
     	<!-- Unit Tests -->
-        <Project DisplayName="Architecture" Path="tests/UnitTests/UnitTests.csproj" />
+        <Project Path="tests/UnitTests/UnitTests.csproj" />
 	</Folder>
 </Solution>
