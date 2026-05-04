@@ -40,36 +40,27 @@ public sealed record Nutrition : ValueObject
     public int? Sodium { get; }
 
     public static Result<Nutrition> Create(
-        int grams,
-        int calories,
-        int carbohydrates,
-        int protein,
-        int fats,
-        int? sugar = null,
-        int? saturatedFats = null,
-        int? fiber = null,
-        int? sodium = null)
-    {
-        if (grams < MinimumQuantity || calories < MinimumQuantity || carbohydrates < MinimumQuantity
-             || protein < MinimumQuantity || fats < MinimumQuantity)
-            return FoodErrors.InvalidNutrition;
-
-        if (sugar < MinimumQuantity || saturatedFats < MinimumQuantity
-             || fiber < MinimumQuantity || sodium < MinimumQuantity)
-            return FoodErrors.InvalidNutrition;
-
-        if (grams >= MaximumQuantity || carbohydrates >= MaximumQuantity
-             || protein >= MaximumQuantity || fats >= MaximumQuantity)
-            return FoodErrors.QuantityExceeded;
-
-        if (sugar >= MaximumQuantity || saturatedFats >= MaximumQuantity
-             || fiber >= MaximumQuantity || sodium >= MaximumQuantity)
-            return FoodErrors.QuantityExceeded;
-
-        return Result.Success(new Nutrition(
-            grams, calories, carbohydrates, protein, fats,
-            sugar, saturatedFats, fiber, sodium));
-    }
+    int grams,
+    int calories,
+    int carbohydrates,
+    int protein,
+    int fats,
+    int? sugar = null,
+    int? saturatedFats = null,
+    int? fiber = null,
+    int? sodium = null)
+    => new Nutrition(
+            grams,
+            calories,
+            carbohydrates,
+            protein,
+            fats,
+            sugar,
+            saturatedFats,
+            fiber,
+            sodium)
+        .ValidateMinimum()
+        .ValidateMaximum();
 
     public override IEnumerable<object> GetAtomicValues()
     {

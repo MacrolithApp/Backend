@@ -23,19 +23,9 @@ public sealed class Food : BaseAggregateRoot
     public Nutrition Nutrition { get; private set; } = null!;
 
     public static Result<Food> Create(string name, Nutrition nutrition)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-            return FoodErrors.InvalidName;
-
-        if (nutrition is null)
-            return FoodErrors.InvalidNutrition;
-
-        Food food = new(FoodId.New(), name, nutrition);
-
-        food.RaiseDomainEvent(new FoodCreatedEvent(food.Id));
-
-        return Result.Success(food);
-    }
+       => new Food(FoodId.New(), name, nutrition)
+            .ValidateName()
+            .ValidateNutrition();
 
     public Result UpdateNutrition(Nutrition newNutrition)
     {
