@@ -1,19 +1,20 @@
 namespace Shared.Domain.Primitives;
 
-public sealed class Result<T> : Result
+public sealed class Result<TValue> : Result
 {
-    private readonly T? _value;
+    private readonly TValue? _value;
 
-    internal Result(T? value, bool isSuccess, Error error)
+    internal Result(TValue? value, bool isSuccess, Error error)
         : base(isSuccess, error)
     {
         _value = value;
     }
 
-    public T Value => IsSuccess
+    public TValue Value => IsSuccess
         ? _value!
-        : throw new InvalidOperationException("Cannot access Value of a failed result.");
+        : throw new InvalidOperationException("The value of a failure result cannot be accessed.");
 
-    public static implicit operator Result<T>(T value) =>
-        Result.Success(value);
+    public static implicit operator Result<TValue>(TValue value) => Result.Success(value);
+
+    public static implicit operator Result<TValue>(Error error) => Result.Failure<TValue>(error);
 }

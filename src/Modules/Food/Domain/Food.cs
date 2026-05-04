@@ -25,10 +25,10 @@ public sealed class Food : BaseAggregateRoot
     public static Result<Food> Create(string name, NutritionalInfo nutrition)
     {
         if (string.IsNullOrWhiteSpace(name))
-            return Result.Failure<Food>(FoodErrors.InvalidName);
+            return FoodErrors.InvalidName;
 
         if (nutrition is null)
-            return Result.Failure<Food>(FoodErrors.InvalidNutrition);
+            return FoodErrors.InvalidNutrition;
 
         Food food = new(FoodId.New(), name, nutrition);
 
@@ -40,7 +40,7 @@ public sealed class Food : BaseAggregateRoot
     public Result UpdateNutrition(NutritionalInfo newNutrition)
     {
         if (newNutrition is null)
-            return Result.Failure(FoodErrors.InvalidNutrition);
+            return FoodErrors.InvalidNutrition;
 
         Nutrition = newNutrition;
 
