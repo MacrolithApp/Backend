@@ -1,40 +1,17 @@
-using Shared.Domain.Methods;
+using Shared.Domain.Events;
 
 namespace Shared.Domain.Bases.Entities;
 
-public abstract class BaseEntity : IEquatable<BaseEntity>
+public abstract class BaseEntity
 {
-    protected BaseEntity(Guid id)
-    {
-        this.Id = id;
-    }
+    private readonly List<IDomainEvent> _domainEvents = [];
 
-    public Guid Id { get; private init; }
+    public IReadOnlyList<IDomainEvent> GetDomainEvents() =>
+        _domainEvents.AsReadOnly();
 
-    public static bool operator ==(BaseEntity? first, BaseEntity? second)
-        => first is not null && second is not null && first.Equals(second);
+    protected void RaiseDomainEvent(IDomainEvent domainEvent) =>
+    _domainEvents.Add(domainEvent);
 
-    public static bool operator !=(BaseEntity? first, BaseEntity? second)
-        => !(first == second);
-
-    public bool Equals(BaseEntity? other)
-    {
-        if (other is null || other.GetType() != this.GetType()) return false;
-
-        return other.Id == this.Id;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is null || obj.GetType() != this.GetType()) return false;
-
-        if (obj is not BaseEntity entity) return false;
-
-        return entity.Id == this.Id;
-    }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode() * PrimeNumberGenerator.GetRandomPrime();
-    }
+    public void ClearDomainEvents() =>
+        _domainEvents.Clear();
 }
