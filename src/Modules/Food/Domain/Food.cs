@@ -11,7 +11,7 @@ public sealed class Food : BaseAggregateRoot
 {
     private Food() { }
 
-    private Food(FoodId id, string name, NutritionalInfo nutrition) : this()
+    private Food(FoodId id, string name, Nutrition nutrition) : this()
     {
         this.Id = id;
         this.Name = name;
@@ -20,9 +20,9 @@ public sealed class Food : BaseAggregateRoot
 
     public FoodId Id { get; init; }
     public string Name { get; private set; } = null!;
-    public NutritionalInfo Nutrition { get; private set; } = null!;
+    public Nutrition Nutrition { get; private set; } = null!;
 
-    public static Result<Food> Create(string name, NutritionalInfo nutrition)
+    public static Result<Food> Create(string name, Nutrition nutrition)
     {
         if (string.IsNullOrWhiteSpace(name))
             return FoodErrors.InvalidName;
@@ -37,14 +37,14 @@ public sealed class Food : BaseAggregateRoot
         return Result.Success(food);
     }
 
-    public Result UpdateNutrition(NutritionalInfo newNutrition)
+    public Result UpdateNutrition(Nutrition newNutrition)
     {
         if (newNutrition is null)
             return FoodErrors.InvalidNutrition;
 
         Nutrition = newNutrition;
 
-        this.RaiseDomainEvent(new FoodCreatedEvent(this.Id));
+        this.RaiseDomainEvent(new FoodNutritionUpdatedEvent(this.Id));
 
         return Result.Success();
     }

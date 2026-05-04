@@ -9,4 +9,7 @@ internal static class FoodErrors
 
     public static readonly Error InvalidNutrition =
         Error.Validation("Food.InvalidNutrition", "Nutritional info cannot be null or negative.");
+
+    public static readonly Error QuantityExceeded =
+        Error.Validation("Food.InvalidQuantity", "The quantity of the food cannot exceed 1kg.");
 }
