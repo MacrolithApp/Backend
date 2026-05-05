@@ -1,9 +1,9 @@
+using Modules.Food.Domain.Validation;
+
 namespace Modules.Food.Domain.ValueObjects;
 
 public sealed record Nutrition : ValueObject
 {
-    private const int MaximumQuantity = 1000;
-    private const int MinimumQuantity = 0;
     private Nutrition(
         int grams,
         int calories,
