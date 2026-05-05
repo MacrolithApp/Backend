@@ -1,11 +1,10 @@
 using Modules.Food.Domain.ValueObjects;
-using Shared.Domain.Exceptions;
-using Shared.Domain.Primitives;
+
 using static Modules.Food.Domain.FoodConstants;
 
 namespace Modules.Food.Domain.Validation;
 
-internal static class Validations
+internal static class FoodValidations
 {
     extension(Food food)
     {

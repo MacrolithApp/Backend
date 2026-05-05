@@ -1,5 +1,3 @@
-using Shared.Domain.TypedIds.Foods;
-
 namespace Modules.Food.Domain.Repositories;
 
 public interface IReads

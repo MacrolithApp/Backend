@@ -1,9 +1,6 @@
 using Modules.Food.Domain.Events;
 using Modules.Food.Domain.Validation;
 using Modules.Food.Domain.ValueObjects;
-using Shared.Domain.Bases.Entities;
-using Shared.Domain.Primitives;
-using Shared.Domain.TypedIds.Foods;
 
 namespace Modules.Food.Domain;
 
@@ -23,9 +20,14 @@ public sealed class Food : BaseAggregateRoot
     public Nutrition Nutrition { get; private set; } = null!;
 
     public static Result<Food> Create(string name, Nutrition nutrition)
-       => new Food(FoodId.New(), name, nutrition)
+    {
+        FoodId id = FoodId.New();
+
+        return new Food(id, name, nutrition)
             .ValidateName()
-            .ValidateNutrition();
+            .ValidateNutrition()
+            .RaiseDomainEvent(new FoodCreatedDomainEvent(id));
+    }
 
     public Result UpdateNutrition(Nutrition newNutrition)
     {
@@ -34,7 +36,7 @@ public sealed class Food : BaseAggregateRoot
 
         Nutrition = newNutrition;
 
-        this.RaiseDomainEvent(new FoodNutritionUpdatedEvent(this.Id));
+        this.RaiseDomainEvent(new NutritionUpdatedDomainEvent(this.Id));
 
         return Result.Success();
     }
