@@ -1,9 +1,6 @@
 using Modules.Food.Domain.Events;
 using Modules.Food.Domain.Validation;
 using Modules.Food.Domain.ValueObjects;
-using Shared.Domain.Bases.Entities;
-using Shared.Domain.Primitives;
-using Shared.Domain.TypedIds.Foods;
 
 namespace Modules.Food.Domain;
 

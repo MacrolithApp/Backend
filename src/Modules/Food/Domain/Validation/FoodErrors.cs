@@ -1,5 +1,3 @@
-using Shared.Domain.Primitives;
-
 namespace Modules.Food.Domain.Validation;
 
 internal static class FoodErrors

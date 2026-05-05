@@ -1,6 +1,3 @@
-using Shared.Domain.Primitives;
-using Modules.Food.Domain.Validation;
-
 namespace Modules.Food.Domain.ValueObjects;
 
 public sealed record Nutrition : ValueObject
